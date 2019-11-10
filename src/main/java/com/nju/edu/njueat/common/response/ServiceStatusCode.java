@@ -1,4 +1,4 @@
-package com.nju.edu.njueat.common;
+package com.nju.edu.njueat.common.response;
 
 import lombok.Getter;
 import lombok.Setter;

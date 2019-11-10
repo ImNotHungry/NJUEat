@@ -1,4 +1,4 @@
-package com.nju.edu.njueat.interceptor;
+package com.nju.edu.njueat.common.interceptor;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;

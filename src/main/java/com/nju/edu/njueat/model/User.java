@@ -13,25 +13,30 @@ import java.io.Serializable;
 public class User implements Serializable {
     //自增id
     @Id
-    @Column(length = 11)
+    @Column(name = "id", nullable = false, length = 11)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    //用户名
+    @Column(name = "name", nullable = false, length = 30)
+    private String name;
+
     //登录密码
-    @Column(nullable = false, length = 128)
+    @Column(name = "password", nullable = false, length = 128)
     private String password;
 
-    //用户名
-    @Column(nullable = false, length = 30)
-    private String username;
+    //微信号
+    @Column(name = "wechat_id", length = 30)
+    private String wechatId;
 
     public User(){
 
     }
 
-    public User(int id, String password, String username) {
+    public User(int id, String name, String password, String wechatId) {
         this.id = id;
+        this.name = name;
         this.password = password;
-        this.username = username;
+        this.wechatId = wechatId;
     }
 }

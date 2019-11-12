@@ -22,6 +22,6 @@ public class UserController {
 
     @PostMapping("/login")
     public ResultBody login(){
-        return new ResultBody(ServiceStatusCode.OK, new User(1,"张三", "123456"));
+        return new ResultBody(ServiceStatusCode.OK);
     }
 }

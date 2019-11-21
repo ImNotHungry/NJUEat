@@ -21,7 +21,21 @@ public class Favorite implements Serializable {
     @Column(name = "user_id", nullable = false, length = 11)
     private int userId;
 
+    //食堂id
+    @Column(name = "restaurant_id", nullable = false, length = 11)
+    private int restaurantId;
+
     //菜品id
     @Column(name = "dish_id", nullable = false, length = 11)
     private int dishId;
+
+    public Favorite() {
+    }
+
+    public Favorite(int id, int userId, int restaurantId, int dishId) {
+        this.id = id;
+        this.userId = userId;
+        this.restaurantId = restaurantId;
+        this.dishId = dishId;
+    }
 }

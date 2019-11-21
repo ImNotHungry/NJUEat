@@ -25,10 +25,6 @@ public class Restaurant implements Serializable {
     @Column(name = "address", nullable = false, length = 50)
     private String address;
 
-    //联系方式
-    @Column(name = "contact", nullable = false, length = 50)
-    private String contact;
-
     //营业时间
     @Column(name = "service_time", nullable = false, length = 50)
     private String serviceTime;
@@ -41,15 +37,20 @@ public class Restaurant implements Serializable {
     @Column(name = "is_canteen", nullable = false, columnDefinition = "tinyint default 0", length = 1)
     private boolean isCanteen;
 
+    //图片地址
+    @Column(name = "picture_url", length = 255)
+    private String pictureUrl;
+
     public Restaurant() {
     }
 
-    public Restaurant(int id, String name, String address, String contact, String serviceTime, String description) {
+    public Restaurant(int id, String name, String address, String serviceTime, String description, boolean isCanteen, String pictureUrl) {
         this.id = id;
         this.name = name;
         this.address = address;
-        this.contact = contact;
         this.serviceTime = serviceTime;
         this.description = description;
+        this.isCanteen = isCanteen;
+        this.pictureUrl = pictureUrl;
     }
 }

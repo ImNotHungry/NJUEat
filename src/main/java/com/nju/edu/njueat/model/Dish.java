@@ -30,6 +30,10 @@ public class Dish implements Serializable {
     @Column(name = "price", nullable = false, columnDefinition = "double(10,2) default '0.00'")
     private double price;
 
+    //窗口
+    @Column(name = "window", nullable = false, length = 11)
+    private int window;
+
     //推出日期
     @Column(name = "launch_date", nullable = false)
     private LocalDateTime launchDate;
@@ -37,4 +41,22 @@ public class Dish implements Serializable {
     //描述
     @Column(name = "description", nullable = false, length = 255)
     private String description;
+
+    //图片地址
+    @Column(name = "picture_url", length = 255)
+    private String pictureUrl;
+
+    public Dish() {
+    }
+
+    public Dish(int id, String name, int restaurantId, double price, int window, LocalDateTime launchDate, String description, String pictureUrl) {
+        this.id = id;
+        this.name = name;
+        this.restaurantId = restaurantId;
+        this.price = price;
+        this.window = window;
+        this.launchDate = launchDate;
+        this.description = description;
+        this.pictureUrl = pictureUrl;
+    }
 }

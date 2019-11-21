@@ -26,16 +26,16 @@ public class Favorite implements Serializable {
     private int restaurantId;
 
     //菜品id
-    @Column(name = "dish_id", nullable = false, length = 11)
-    private int dishId;
+    @Column(name = "food_id", nullable = false, length = 11)
+    private int foodId;
 
     public Favorite() {
     }
 
-    public Favorite(int id, int userId, int restaurantId, int dishId) {
+    public Favorite(int id, int userId, int restaurantId, int foodId) {
         this.id = id;
         this.userId = userId;
         this.restaurantId = restaurantId;
-        this.dishId = dishId;
+        this.foodId = foodId;
     }
 }

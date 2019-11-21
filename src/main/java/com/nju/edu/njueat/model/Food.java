@@ -8,10 +8,10 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "dish")
+@Table(name = "food")
 @Getter
 @Setter
-public class Dish implements Serializable {
+public class Food implements Serializable {
     //自增id
     @Id
     @Column(name = "id", nullable = false, length = 11)
@@ -46,10 +46,10 @@ public class Dish implements Serializable {
     @Column(name = "picture_url", length = 255)
     private String pictureUrl;
 
-    public Dish() {
+    public Food() {
     }
 
-    public Dish(int id, String name, int restaurantId, double price, int window, LocalDateTime launchDate, String description, String pictureUrl) {
+    public Food(int id, String name, int restaurantId, double price, int window, LocalDateTime launchDate, String description, String pictureUrl) {
         this.id = id;
         this.name = name;
         this.restaurantId = restaurantId;

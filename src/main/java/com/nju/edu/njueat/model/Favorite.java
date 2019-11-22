@@ -1,15 +1,10 @@
 package com.nju.edu.njueat.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "favorite")
-@Getter
-@Setter
 public class Favorite implements Serializable {
     //自增id
     @Id
@@ -36,6 +31,38 @@ public class Favorite implements Serializable {
         this.id = id;
         this.userId = userId;
         this.restaurantId = restaurantId;
+        this.foodId = foodId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(int restaurantId) {
+        this.restaurantId = restaurantId;
+    }
+
+    public int getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(int foodId) {
         this.foodId = foodId;
     }
 }

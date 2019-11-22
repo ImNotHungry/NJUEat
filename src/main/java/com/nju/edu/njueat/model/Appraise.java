@@ -1,16 +1,11 @@
 package com.nju.edu.njueat.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "appraise")
-@Getter
-@Setter
 public class Appraise implements Serializable {
     //自增id
     @Id
@@ -43,6 +38,46 @@ public class Appraise implements Serializable {
         this.userId = userId;
         this.restaurantId = restaurantId;
         this.comment = comment;
+        this.commentTime = commentTime;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getRestaurantId() {
+        return restaurantId;
+    }
+
+    public void setRestaurantId(int restaurantId) {
+        this.restaurantId = restaurantId;
+    }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
+    public LocalDateTime getCommentTime() {
+        return commentTime;
+    }
+
+    public void setCommentTime(LocalDateTime commentTime) {
         this.commentTime = commentTime;
     }
 }

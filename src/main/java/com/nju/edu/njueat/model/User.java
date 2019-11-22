@@ -1,15 +1,10 @@
 package com.nju.edu.njueat.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "user")
-@Getter
-@Setter
 public class User implements Serializable {
     //自增id
     @Id
@@ -30,13 +25,44 @@ public class User implements Serializable {
     private String wechatId;
 
     public User(){
-
     }
 
     public User(int id, String name, String password, String wechatId) {
         this.id = id;
         this.name = name;
         this.password = password;
+        this.wechatId = wechatId;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getWechatId() {
+        return wechatId;
+    }
+
+    public void setWechatId(String wechatId) {
         this.wechatId = wechatId;
     }
 }

@@ -1,15 +1,10 @@
 package com.nju.edu.njueat.model;
 
-import lombok.Getter;
-import lombok.Setter;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
 @Entity
 @Table(name = "restaurant")
-@Getter
-@Setter
 public class Restaurant implements Serializable {
     //自增id
     @Id
@@ -51,6 +46,62 @@ public class Restaurant implements Serializable {
         this.serviceTime = serviceTime;
         this.description = description;
         this.isCanteen = isCanteen;
+        this.pictureUrl = pictureUrl;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
+    public String getServiceTime() {
+        return serviceTime;
+    }
+
+    public void setServiceTime(String serviceTime) {
+        this.serviceTime = serviceTime;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isCanteen() {
+        return isCanteen;
+    }
+
+    public void setCanteen(boolean canteen) {
+        isCanteen = canteen;
+    }
+
+    public String getPictureUrl() {
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
     }
 }

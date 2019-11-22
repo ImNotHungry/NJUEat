@@ -36,10 +36,14 @@ public class Restaurant implements Serializable {
     @Column(name = "picture_url", length = 255)
     private String pictureUrl;
 
+    //人均消费
+    @Column(name = "consumption", nullable = false, columnDefinition = "double(10,2) default '0.00'")
+    private double consumption;
+
     public Restaurant() {
     }
 
-    public Restaurant(int id, String name, String address, String serviceTime, String description, boolean isCanteen, String pictureUrl) {
+    public Restaurant(int id, String name, String address, String serviceTime, String description, boolean isCanteen, String pictureUrl, double consumption) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -47,6 +51,7 @@ public class Restaurant implements Serializable {
         this.description = description;
         this.isCanteen = isCanteen;
         this.pictureUrl = pictureUrl;
+        this.consumption = consumption;
     }
 
     public int getId() {
@@ -103,5 +108,13 @@ public class Restaurant implements Serializable {
 
     public void setPictureUrl(String pictureUrl) {
         this.pictureUrl = pictureUrl;
+    }
+
+    public double getConsumption() {
+        return consumption;
+    }
+
+    public void setConsumption(double consumption) {
+        this.consumption = consumption;
     }
 }

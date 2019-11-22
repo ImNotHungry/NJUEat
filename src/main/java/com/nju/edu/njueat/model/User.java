@@ -24,14 +24,19 @@ public class User implements Serializable {
     @Column(name = "wechat_id", length = 30)
     private String wechatId;
 
+    //头像地址
+    @Column(name = "avatar_url", length = 255)
+    private String avatarUrl;
+
     public User(){
     }
 
-    public User(int id, String name, String password, String wechatId) {
+    public User(int id, String name, String password, String wechatId, String avatarUrl) {
         this.id = id;
         this.name = name;
         this.password = password;
         this.wechatId = wechatId;
+        this.avatarUrl = avatarUrl;
     }
 
     public int getId() {
@@ -64,5 +69,13 @@ public class User implements Serializable {
 
     public void setWechatId(String wechatId) {
         this.wechatId = wechatId;
+    }
+
+    public String getAvatarUrl() {
+        return avatarUrl;
+    }
+
+    public void setAvatarUrl(String avatarUrl) {
+        this.avatarUrl = avatarUrl;
     }
 }

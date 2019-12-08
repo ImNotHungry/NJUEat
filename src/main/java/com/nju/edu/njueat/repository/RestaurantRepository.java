@@ -11,4 +11,11 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
      * @return 食堂列表
      */
     List<Restaurant> findAllByIsCanteen(boolean isCanteen);
+
+    /**
+     * 根据食堂Id获取食堂信息
+     * @param allIds
+     * @return
+     */
+    List<Restaurant> findRestaurantsByIdIsIn(List<Integer> allIds);
 }

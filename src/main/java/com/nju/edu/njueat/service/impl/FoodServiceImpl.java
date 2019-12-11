@@ -58,12 +58,17 @@ public class FoodServiceImpl implements FoodService {
         Random random = new Random(System.currentTimeMillis());
         List<Food> all = foodRepository.findAll();
         Map<Integer, Food> foodMap = new HashMap<>();
-        while (foodMap.size() < DAILY_RECOMMEND_VALUE) {
+        int step = 0;
+        while (step < DAILY_RECOMMEND_VALUE) {
             int randomIndex = random.nextInt(all.size());
             Food food = all.get(randomIndex);
             foodMap.put(food.getId(), food);
+            step++;
         }
-        List<Food> dailyFoods = (List<Food>) foodMap.values();
+        List<Food> dailyFoods =new ArrayList<>();
+        for (int eachId:foodMap.keySet()){
+            dailyFoods.add(foodMap.get(eachId));
+        }
         return getFoodInfoByFoods(dailyFoods);
 
     }

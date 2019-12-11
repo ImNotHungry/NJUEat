@@ -36,7 +36,7 @@ public class FoodController {
     @PostMapping("/addFood")
     public ResultBody addNewFood(@RequestParam("foodName") String foodName,
                                  @RequestParam("restaurantId") int restaurantId,
-                                 @RequestParam("window") int window,
+                                 @RequestParam("window") String window,
                                  @RequestParam("description") String description,
                                  @RequestParam("price") double price,
                                  @RequestParam("foodPicture") MultipartFile foodPicture) {

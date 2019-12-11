@@ -26,8 +26,8 @@ public class Food implements Serializable {
     private double price;
 
     //窗口
-    @Column(name = "window", nullable = false, length = 11)
-    private int window;
+    @Column(name = "window", nullable = false, length = 255)
+    private String window;
 
     //推出日期
     @Column(name = "launch_date", nullable = false)
@@ -44,7 +44,7 @@ public class Food implements Serializable {
     public Food() {
     }
 
-    public Food(int id, String name, int restaurantId, double price, int window, LocalDateTime launchDate, String description, String pictureUrl) {
+    public Food(int id, String name, int restaurantId, double price, String window, LocalDateTime launchDate, String description, String pictureUrl) {
         this.id = id;
         this.name = name;
         this.restaurantId = restaurantId;
@@ -87,11 +87,11 @@ public class Food implements Serializable {
         this.price = price;
     }
 
-    public int getWindow() {
+    public String getWindow() {
         return window;
     }
 
-    public void setWindow(int window) {
+    public void setWindow(String window) {
         this.window = window;
     }
 

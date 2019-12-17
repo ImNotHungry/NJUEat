@@ -4,5 +4,7 @@ import com.nju.edu.njueat.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Integer> {
+    User getByWechatId(String wxId);
+
 
 }

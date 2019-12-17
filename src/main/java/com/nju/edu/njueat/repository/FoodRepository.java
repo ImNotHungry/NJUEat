@@ -17,4 +17,6 @@ public interface FoodRepository extends JpaRepository<Food,Integer> {
     @Query(value = "from Food where restaurantId= :rid order by launchDate desc ")
     List<Food> getOneCanteenFoods(@Param("rid") int restaurantId);
 
+    Food getById(int id);
+
 }

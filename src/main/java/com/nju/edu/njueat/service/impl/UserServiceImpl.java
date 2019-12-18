@@ -35,13 +35,18 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addNewCollection(Favorite favorite) {
+    public void addNewCollection(int userId, int foodId) {
+        Favorite favorite = new Favorite();
+        Food food = foodRepository.getById(foodId);
+        favorite.setUserId(userId);
+        favorite.setFoodId(foodId);
+        favorite.setRestaurantId(food.getRestaurantId());
         favoriteRepository.save(favorite);
     }
 
     @Override
-    public void deleteCollection(int userId, int foodId, int restaurantId) {
-        Favorite favorite = favoriteRepository.getFavoriteByUserIdAndFoodIdAndRestaurantId(userId, foodId, restaurantId);
+    public void deleteCollection(int userId, int foodId) {
+        Favorite favorite = favoriteRepository.getFavoriteByUserIdAndFoodId(userId, foodId);
         favoriteRepository.delete(favorite);
     }
 

@@ -10,9 +10,9 @@ public interface UserService {
 
     List<Food> getCollectionFoods(int userId);
 
-    void addNewCollection(Favorite favorite);
+    void addNewCollection(int userId, int foodId);
 
-    void deleteCollection(int userId, int foodId, int restaurantId);
+    void deleteCollection(int userId, int foodId);
 
     User getUserByWechatId(String wxId);
 

@@ -28,21 +28,15 @@ public class UserController {
 
     @PostMapping("/addCollection")
     public ResultBody addNewFavor(@RequestParam("userId") int userId,
-                                  @RequestParam("foodId") int foodId,
-                                  @RequestParam("restaurantId") int restaurantId) {
-        Favorite favorite = new Favorite();
-        favorite.setFoodId(foodId);
-        favorite.setRestaurantId(restaurantId);
-        favorite.setUserId(userId);
-        userService.addNewCollection(favorite);
+                                  @RequestParam("foodId") int foodId) {
+        userService.addNewCollection(userId, foodId);
         return new ResultBody(ServiceStatusCode.OK);
     }
 
     @PostMapping("/deleteCollection")
     public ResultBody deleteFavor(@RequestParam("userId") int userId,
-                                  @RequestParam("foodId") int foodId,
-                                  @RequestParam("restaurantId") int restaurantId) {
-        userService.deleteCollection(userId, foodId, restaurantId);
+                                  @RequestParam("foodId") int foodId) {
+        userService.deleteCollection(userId, foodId);
         return new ResultBody(ServiceStatusCode.OK);
     }
 

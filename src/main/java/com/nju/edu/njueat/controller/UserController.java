@@ -58,8 +58,9 @@ public class UserController {
 
     @PostMapping("/addUser")
     public ResultBody addUser(@RequestParam("wxID") String wxId,
-                              @RequestParam("userName") String userName) {
-        userService.addUserByWechatId(wxId, userName);
+                              @RequestParam("userName") String userName,
+                              @RequestParam("avatarUrl") String avatarUrl) {
+        userService.addUserByWechatId(wxId, userName, avatarUrl);
         return new ResultBody(ServiceStatusCode.OK);
     }
 }

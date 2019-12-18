@@ -16,5 +16,5 @@ public interface UserService {
 
     User getUserByWechatId(String wxId);
 
-    void addUserByWechatId(String wxId,String userName);
+    void addUserByWechatId(String wxId,String userName, String avatarUrl);
 }

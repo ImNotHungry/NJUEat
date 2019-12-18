@@ -51,7 +51,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void addUserByWechatId(String wxId, String userName) {
+    public void addUserByWechatId(String wxId, String userName, String avatarUrl) {
         User user = userRepository.getByWechatId(wxId);
         if (user != null) {
             return;
@@ -59,7 +59,7 @@ public class UserServiceImpl implements UserService {
             User newUser = new User();
             newUser.setName(userName);
             newUser.setWechatId(wxId);
-            newUser.setAvatarUrl("");
+            newUser.setAvatarUrl(avatarUrl);
             newUser.setPassword("");
             userRepository.save(newUser);
         }

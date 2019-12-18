@@ -17,10 +17,6 @@ public class Appraise implements Serializable {
     @Column(name = "user_id", nullable = false, length = 11)
     private int userId;
 
-    //餐馆id
-    @Column(name = "restaurant_id", nullable = false, length = 11)
-    private int restaurantId;
-
     //评论
     @Lob
     @Column(name = "comment", columnDefinition = "longtext")
@@ -33,10 +29,9 @@ public class Appraise implements Serializable {
     public Appraise() {
     }
 
-    public Appraise(int id, int userId, int restaurantId, String comment, LocalDateTime commentTime) {
+    public Appraise(int id, int userId, String comment, LocalDateTime commentTime) {
         this.id = id;
         this.userId = userId;
-        this.restaurantId = restaurantId;
         this.comment = comment;
         this.commentTime = commentTime;
     }
@@ -55,14 +50,6 @@ public class Appraise implements Serializable {
 
     public void setUserId(int userId) {
         this.userId = userId;
-    }
-
-    public int getRestaurantId() {
-        return restaurantId;
-    }
-
-    public void setRestaurantId(int restaurantId) {
-        this.restaurantId = restaurantId;
     }
 
     public String getComment() {

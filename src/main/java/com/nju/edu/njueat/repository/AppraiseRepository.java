@@ -13,6 +13,6 @@ public interface AppraiseRepository extends JpaRepository<Appraise, Integer> {
      * @return 评论列表
      */
     @Query(value = "select t2.name, t2.avatarUrl, t1.comment, t1.commentTime from Appraise t1 " +
-            "left join User t2 on t1.userId=t2.id where t1.restaurantId=:restaurantId")
-    List<Object[]> findAllByRestaurantId(int restaurantId);
+            "left join User t2 on t1.userId=t2.id")
+    List<Object[]> findAllAppraise();
 }

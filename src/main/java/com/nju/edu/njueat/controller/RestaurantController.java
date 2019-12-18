@@ -36,24 +36,4 @@ public class RestaurantController {
     public ResultBody outside() {
         return new ResultBody(ServiceStatusCode.OK, restaurantService.outsideRestaurant());
     }
-
-    /**
-     * 添加评论
-     * @return 添加成功
-     */
-    @PostMapping("/addComment")
-    public ResultBody addComment(@RequestParam("userId") int userId, @RequestParam("restaurantId") int restaurantId,
-                                 @RequestParam("comment") String comment) {
-        restaurantService.addComment(userId, restaurantId, comment);
-        return new ResultBody(ServiceStatusCode.OK);
-    }
-
-    /**
-     * 查看评论
-     * @return 评论列表
-     */
-    @PostMapping("/viewComment")
-    public ResultBody viewComment(@RequestParam("restaurantId") int restaurantId) {
-        return new ResultBody(ServiceStatusCode.OK, restaurantService.allComment(restaurantId));
-    }
 }

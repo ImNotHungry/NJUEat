@@ -66,7 +66,7 @@ public class FoodServiceImpl implements FoodService {
         int step = 0;
         while (step < DAILY_RECOMMEND_VALUE) {
             int randomIndex = random.nextInt(all.size());
-            System.err.println(randomIndex);
+//            System.err.println(randomIndex);
             Food food = all.get(randomIndex);
             foodMap.put(food.getId(), food);
             step++;

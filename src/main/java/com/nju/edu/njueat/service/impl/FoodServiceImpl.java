@@ -21,7 +21,7 @@ public class FoodServiceImpl implements FoodService {
     private static int NEW_FOOD_VALUE = 10;
 
     // 每日推荐的数量
-    private static int DAILY_RECOMMEND_VALUE = 10;
+    private static int DAILY_RECOMMEND_VALUE = 1;
 
     @Autowired
     private FoodRepository foodRepository;
@@ -66,6 +66,7 @@ public class FoodServiceImpl implements FoodService {
         int step = 0;
         while (step < DAILY_RECOMMEND_VALUE) {
             int randomIndex = random.nextInt(all.size());
+            System.err.println(randomIndex);
             Food food = all.get(randomIndex);
             foodMap.put(food.getId(), food);
             step++;

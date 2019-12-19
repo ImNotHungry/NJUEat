@@ -2,8 +2,10 @@ package com.nju.edu.njueat.service.impl;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.nju.edu.njueat.model.Favorite;
 import com.nju.edu.njueat.model.Food;
 import com.nju.edu.njueat.model.Restaurant;
+import com.nju.edu.njueat.repository.FavoriteRepository;
 import com.nju.edu.njueat.repository.FoodRepository;
 import com.nju.edu.njueat.repository.RestaurantRepository;
 import com.nju.edu.njueat.service.FoodService;
@@ -25,6 +27,8 @@ public class FoodServiceImpl implements FoodService {
     private FoodRepository foodRepository;
     @Autowired
     private RestaurantRepository restaurantRepository;
+    @Autowired
+    private FavoriteRepository favoriteRepository;
 
 
     @Override
@@ -34,7 +38,7 @@ public class FoodServiceImpl implements FoodService {
     }
 
     @Override
-    public JSONArray getNewFoods() {
+    public JSONArray getNewFoods(int userId) {
         List<Food> allFoods = foodRepository.getNewFoods();
         List<Food> newFoods = new ArrayList<>();
 
@@ -44,17 +48,18 @@ public class FoodServiceImpl implements FoodService {
         } else {
             newFoods = allFoods.subList(0, NEW_FOOD_VALUE);
         }
-        return getFoodInfoByFoods(newFoods);
+        return getFoodInfoByFoods(newFoods, userId);
 
     }
 
     @Override
-    public List<Food> getAllFoodsInCanteen(int restaurantId) {
-        return foodRepository.getOneCanteenFoods(restaurantId);
+    public JSONArray getAllFoodsInCanteen(int restaurantId, int userId) {
+        List<Food> oneCanteenFoods = foodRepository.getOneCanteenFoods(restaurantId);
+        return getFoodInfoByFoods(oneCanteenFoods, userId);
     }
 
     @Override
-    public JSONArray getDailyFood() {
+    public JSONArray getDailyFood(int userId) {
         Random random = new Random(System.currentTimeMillis());
         List<Food> all = foodRepository.findAll();
         Map<Integer, Food> foodMap = new HashMap<>();
@@ -65,11 +70,11 @@ public class FoodServiceImpl implements FoodService {
             foodMap.put(food.getId(), food);
             step++;
         }
-        List<Food> dailyFoods =new ArrayList<>();
-        for (int eachId:foodMap.keySet()){
+        List<Food> dailyFoods = new ArrayList<>();
+        for (int eachId : foodMap.keySet()) {
             dailyFoods.add(foodMap.get(eachId));
         }
-        return getFoodInfoByFoods(dailyFoods);
+        return getFoodInfoByFoods(dailyFoods, userId);
 
     }
 
@@ -77,10 +82,17 @@ public class FoodServiceImpl implements FoodService {
     /**
      * 根据获取到的菜品类定制返回消息格式
      *
-     * @param foods 所有的菜品
+     * @param foods  所有的菜品
+     * @param userId userId
      * @return 返回的消息
      */
-    private JSONArray getFoodInfoByFoods(List<Food> foods) {
+    private JSONArray getFoodInfoByFoods(List<Food> foods, int userId) {
+        List<Favorite> allFavoriteByUserId = favoriteRepository.getAllByUserId(userId);
+        List<Integer> favoriteFoodIds = new ArrayList<>();
+        allFavoriteByUserId.forEach(e -> {
+            favoriteFoodIds.add(e.getFoodId());
+        });
+
         // 获取相关的餐厅ID
         Map<Integer, Integer> restaurantIdAndIndexMap = new HashMap<>();
         for (Food eachFood : foods) {
@@ -102,9 +114,16 @@ public class FoodServiceImpl implements FoodService {
             jsonObject.put("pictureUrl", eachFood.getPictureUrl());
             jsonObject.put("description", eachFood.getDescription());
             jsonObject.put("restaurantName", restaurantIdAndNameMap.get(eachFood.getRestaurantId()));
+            jsonObject.put("CanteenId", eachFood.getRestaurantId());
+            jsonObject.put("restaurantId", eachFood.getRestaurantId());
             jsonObject.put("window", eachFood.getWindow());
             jsonObject.put("price", eachFood.getPrice());
             jsonObject.put("launchDate", eachFood.getLaunchDate());
+            if (favoriteFoodIds.indexOf(eachFood.getId()) > -1) {
+                jsonObject.put("isFavor", true);
+            } else {
+                jsonObject.put("isFavor", false);
+            }
             resultArray.add(jsonObject);
         }
         return resultArray;

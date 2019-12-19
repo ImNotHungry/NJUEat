@@ -60,8 +60,8 @@ public class FoodController {
      * @return response
      */
     @PostMapping("/new")
-    public ResultBody getNewFood() {
-        return new ResultBody(ServiceStatusCode.OK, foodService.getNewFoods());
+    public ResultBody getNewFood(@RequestParam("userId")int userId) {
+        return new ResultBody(ServiceStatusCode.OK, foodService.getNewFoods(userId));
     }
 
     /**
@@ -71,8 +71,8 @@ public class FoodController {
      * @return 返回消息
      */
     @PostMapping("/all")
-    public ResultBody getOneCanteenAllFoods(@RequestParam("restaurantId") int restaurantId) {
-        return new ResultBody(ServiceStatusCode.OK, foodService.getAllFoodsInCanteen(restaurantId));
+    public ResultBody getOneCanteenAllFoods(@RequestParam("restaurantId") int restaurantId,@RequestParam("userId")int userId) {
+        return new ResultBody(ServiceStatusCode.OK, foodService.getAllFoodsInCanteen(restaurantId,userId));
     }
 
     /**
@@ -82,8 +82,8 @@ public class FoodController {
      * @return 假装能够实现推荐的菜品
      */
     @PostMapping("/random")
-    public ResultBody getDailyRecommendFoods() {
-        return new ResultBody(ServiceStatusCode.OK, foodService.getDailyFood());
+    public ResultBody getDailyRecommendFoods(@RequestParam("userId")int userId) {
+        return new ResultBody(ServiceStatusCode.OK, foodService.getDailyFood(userId));
     }
 
 }

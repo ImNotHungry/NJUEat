@@ -18,4 +18,6 @@ public interface RestaurantRepository extends JpaRepository<Restaurant, Integer>
      * @return
      */
     List<Restaurant> findRestaurantsByIdIsIn(List<Integer> allIds);
+
+    Restaurant getById(int id);
 }

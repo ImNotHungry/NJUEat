@@ -1,10 +1,13 @@
 package com.nju.edu.njueat.service.impl;
 
+import com.alibaba.fastjson.JSONArray;
+import com.alibaba.fastjson.JSONObject;
 import com.nju.edu.njueat.model.Favorite;
 import com.nju.edu.njueat.model.Food;
 import com.nju.edu.njueat.model.User;
 import com.nju.edu.njueat.repository.FavoriteRepository;
 import com.nju.edu.njueat.repository.FoodRepository;
+import com.nju.edu.njueat.repository.RestaurantRepository;
 import com.nju.edu.njueat.repository.UserRepository;
 import com.nju.edu.njueat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,19 +22,32 @@ public class UserServiceImpl implements UserService {
     private FavoriteRepository favoriteRepository;
     @Autowired
     private FoodRepository foodRepository;
-
+    @Autowired
+    private RestaurantRepository restaurantRepository;
     @Autowired
     private UserRepository userRepository;
 
     @Override
-    public List<Food> getCollectionFoods(int userId) {
+    public JSONArray getCollectionFoods(int userId) {
+        JSONArray array = new JSONArray();
         List<Food> foods = new ArrayList<>();
         List<Favorite> favorites = favoriteRepository.getAllByUserId(userId);
         for (Favorite favor : favorites) {
             foods.add(foodRepository.getById(favor.getFoodId()));
         }
-
-        return foods;
+        for (Food food :foods) {
+            JSONObject jsonObject = new JSONObject();
+            jsonObject.put("id",food.getId());
+            jsonObject.put("name",food.getName());
+            jsonObject.put("description",food.getDescription());
+            jsonObject.put("pictureUrl",food.getPictureUrl());
+            jsonObject.put("price",food.getPrice());
+            jsonObject.put("restaurantName",restaurantRepository.getById(food.getRestaurantId()).getName());
+            jsonObject.put("window",food.getWindow());
+            jsonObject.put("restaurantId",food.getRestaurantId());
+            array.add(jsonObject);
+        }
+        return array;
     }
 
     @Override

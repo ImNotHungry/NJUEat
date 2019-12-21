@@ -27,6 +27,7 @@ public class RestaurantServiceImpl implements RestaurantService {
         JSONArray array = new JSONArray();
         for (Restaurant restaurant : restaurantList){
             JSONObject object = new JSONObject();
+            object.put("restaurantId", restaurant.getId());
             object.put("restaurantName", restaurant.getName());
             object.put("pictureUrl", restaurant.getPictureUrl());
             object.put("serviceTime", restaurant.getServiceTime());

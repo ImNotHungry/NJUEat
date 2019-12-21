@@ -1,8 +1,11 @@
 package com.nju.edu.njueat.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.nju.edu.njueat.common.response.ResultBody;
 import com.nju.edu.njueat.common.response.ServiceStatusCode;
 import com.nju.edu.njueat.service.UserService;
+import com.nju.edu.njueat.util.HttpUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -55,5 +58,12 @@ public class UserController {
                               @RequestParam("avatarUrl") String avatarUrl) {
         userService.addUserByWechatId(wxId, userName, avatarUrl);
         return new ResultBody(ServiceStatusCode.OK);
+    }
+
+    @PostMapping("/getOpenId")
+    public ResultBody getOpenId(@RequestParam("code") String code) {
+        String url = "https://api.weixin.qq.com/sns/jscode2session?appid=wx446f60adbe0ec659&secret=5538daa8ab5638348494ff25129d862a&js_code=" + code + "&grant_type=authorization_code";
+        JSONObject jsonObject = JSON.parseObject(HttpUtil.doGet(url));
+        return new ResultBody(ServiceStatusCode.OK, jsonObject);
     }
 }

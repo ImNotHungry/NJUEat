@@ -2,7 +2,6 @@ package com.nju.edu.njueat.controller;
 
 import com.nju.edu.njueat.common.response.ResultBody;
 import com.nju.edu.njueat.common.response.ServiceStatusCode;
-import com.nju.edu.njueat.model.Favorite;
 import com.nju.edu.njueat.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
